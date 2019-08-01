@@ -4,7 +4,7 @@ This is an attempt to test you network with "IMIX profile" using open-source sof
 
 ## Prerequisites
  - iptables need to be adjusted on both iPerf server and iPerf client
- - passwordless access to be configured using RSA keys
+ - SSH configured to use RSA keys
  - basic understanding of bash
  - bc package must be installed on client's side
 
@@ -34,20 +34,20 @@ It is a know fact, that the minimum Ethernet frame payload is 46 bytes and the m
 
 Wiki page for IMIX (https://en.wikipedia.org/wiki/Internet_Mix) and Cisco in its own testing tool (https://github.com/cisco-system-traffic-generator/trex-core/blob/master/scripts/stl/imix.py) use the following traffic distribution:
 
-|IP payload length|Total Ethernet length|Number of packets in IMIX stream|Percent of packets|Percent of traffic consumption|
+|Total Ethernet length|Number of packets in stream|Percent of packets|Percent of BW consumption|
 |:-----:|:-----:|:-----:|:-----:|:-----:|
-|46|64|7|58|19|
-|576|594|4|33|50|
-|1500|1518|1|9|31|
+|64|7|58|19|
+|594|4|33|50|
+|1518|1|9|31|
 
 
-If you use IPSec, then the maximum packet size could be less then 1400. To be safe in terms of MTU, you can use the following values
+If you use IPSec, then the maximum packet size sould be less then 1400. To be safe in terms of MTU, you can use the following values
 
-|UDP payload length|IP payload length|Total Ethernet length|Percent of traffic consumption|
+|UDP payload length|Total Ethernet length|Percent of traffic consumption|
 |:-----:|:-----:|:-----:|:-----:|
-|64|92|110|19|
-|530|558|576|50|
-|1304|1332|1350|31|
+|18|64|19|
+|530|576|50|
+|1304|1350|31|
 
 ## Statistics
 Many people on the Internet complained about iPerf3 statistics provided for UDP and I am one of them. It is not accurate at all, so I used iptables with user-defined chains to count the number of packet sent/received. 
@@ -123,4 +123,5 @@ If your CPU has less than 4 cores, then remove affinity parameter (-A) and its a
 
 That is all. Once it is done, you can run the script.
 
-BTW, log file is written for your convenience. It has a prefix of "iperf_<TIMESTAMP>".
+## Logfile
+Logs are written in files with prefix of "iperf_*".
