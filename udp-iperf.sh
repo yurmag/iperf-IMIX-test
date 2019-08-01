@@ -137,10 +137,10 @@ FLOW_576_LOST=$(echo "$FLOW_576_OUT - $FLOW_576_IN" | bc)
 FLOW_1350_LOST=$(echo "$FLOW_1350_OUT - $FLOW_1350_IN" | bc)
 SUMMARY_LOST=$(echo "$FLOW_64_LOST + $FLOW_576_LOST + $FLOW_1350_LOST" | bc)
 
-FLOW_64_DROP_RATE=$( echo "$FLOW_64_LOST * 100 / $FLOW_64_OUT" | bc )
-FLOW_576_DROP_RATE=$( echo "$FLOW_576_LOST * 100 / $FLOW_576_OUT" | bc )
-FLOW_1350_DROP_RATE=$( echo "$FLOW_1350_LOST * 100 / $FLOW_1350_OUT" | bc )
-SUMMARY_DROP_RATE=$(printf "%0.2f" $(echo "$SUMMARY_LOST * 100 / $SUMMARY_OUT" | bc) )
+FLOW_64_DROP_RATE=$(printf "%0.2f" $(echo "$FLOW_64_LOST * 100 / $FLOW_64_OUT" | bc -l) )
+FLOW_576_DROP_RATE=$(printf "%0.2f" $(echo "$FLOW_576_LOST * 100 / $FLOW_576_OUT" | bc -l) )
+FLOW_1350_DROP_RATE=$(printf "%0.2f" $(echo "$FLOW_1350_LOST * 100 / $FLOW_1350_OUT" | bc -l) )
+SUMMARY_DROP_RATE=$(printf "%0.2f" $(echo "$SUMMARY_LOST * 100 / $SUMMARY_OUT" | bc -l) )
 
 # Bandwidth is counted with the following formula:
 #  IFG + Preamble + Ethernet + IP + UDP + payload + CRS
