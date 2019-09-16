@@ -1,6 +1,6 @@
 # iperf3-imix-test
 
-This is an attempt to test you network with "IMIX profile" using open-source software.
+This is an way to test you network throughput with "IMIX profile" using open-source software.
 
 ## Prerequisites
  - iptables need to be adjusted on both iPerf server and iPerf client

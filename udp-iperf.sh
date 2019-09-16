@@ -186,4 +186,7 @@ printf "%-10s%15s%15s%11d%11.2f%%%10s%s%10s%s\n" "Summary" $SUMMARY_OUT $SUMMARY
 
 rm -f *.tmp
 
+echo
+echo "iPerf3 logs are in the file: iperf_$TIMESTAMP.txt"
+
 exit
